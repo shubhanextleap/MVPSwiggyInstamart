@@ -1,0 +1,30 @@
+Here is the detailed **Problem Statement and MVP Blueprint** tailored exactly to your submission guidelines. 
+
+I have not touched your existing files. Please review this carefully. If you approve this framing, we can move forward and start building the actual MVP (the code, the mock data, and the live workflow)!
+
+***
+
+### MVP Problem Statement: Hybrid AI "What's New" Discovery Engine
+
+**1. The Core Problem & Depth (Framing the Challenge)**
+Swiggy Instamart users suffer from deep-rooted **"Category Inertia"** driven by a psychological *Trust Deficit*. While users trust the platform for low-margin, high-frequency grocery restocks (milk, bread), they hesitate to purchase high-margin, non-grocery items (electronics, beauty). They view Instamart purely as an emergency grocery tool, restricting Average Order Value (AOV) and limiting Instamart's path to profitability. 
+
+**2. The Solution & Competitive Moat (Creativity)**
+To break this inertia, we are building a **Hybrid AI "What's New" Discovery Pop-up**. This solution intercepts the user immediately at app-open. Unlike generic social proof, this feature leverages Swiggy's unique, proprietary cross-ecosystem data (combining restaurant food delivery habits with grocery habits). This creates a massive **competitive moat** that standalone quick-commerce rivals like Zepto or Blinkit cannot replicate.
+
+**3. AI Architecture & Failure Mitigation (LLM Guardrails)**
+Generative AI is inherently non-deterministic and prone to dangerous hallucinations (e.g., recommending products that do not exist or are out of stock). To completely mitigate this risk, our MVP uses a **Hybrid Architecture**:
+*   **Predictive ML (Deterministic & Safe):** A hard-coded logic engine that safely maps the user's past data to select a guaranteed in-stock, high-margin product from the local dark store.
+*   **Generative AI (Creative):** The LLM is strictly constrained via a System Prompt. It is not allowed to pick products; it is only allowed to write the conversational, humanized "hook" explaining *why* the user needs the pre-selected item.
+
+**4. Data & Metrics Orientation**
+The success of this feature will be tracked using the following metrics:
+*   **North Star Metric:** *Cross-Category Conversion Rate* (The percentage of users who interact with the AI pop-up and purchase an item from a category they have never bought from before).
+*   **Secondary Metrics:** *AOV Uplift* (Increase in cart value) and *Day 30 Retention* (Are users who buy electronics more likely to stay on the app long-term?).
+
+**5. The Live MVP Workflow (Demonstration Strategy)**
+To satisfy the requirement of a live, testable workflow, we will build an interactive simulation (using Python/Streamlit/Gradio). Mentors will be able to test the workflow end-to-end:
+1. **Raw Data Ingestion:** Select a simulated User Profile (e.g., "The Health Conscious Shopper").
+2. **Classification/Logic:** The deterministic engine selects a relevant high-margin item (e.g., "Smartwatch").
+3. **LLM Reasoning:** The Generative AI crafts a personalized hook based on the raw data.
+4. **Final Output:** The mentor sees the final rendered Pop-up UI exactly as the user would.

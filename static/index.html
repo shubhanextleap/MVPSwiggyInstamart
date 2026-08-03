@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swiggy Instamart</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="app-container">
+        
+        <!-- View 1: Home Page -->
+        <div id="homeView" class="view active">
+            <header class="header">
+                <div class="header-content">
+                    <div>
+                        <h1 class="brand-title">Instamart</h1>
+                        <p class="delivery-time">Delivery to 123 Main Street in 10 mins</p>
+                    </div>
+                    <!-- Demo controls -->
+                    <div class="demo-controls">
+                        <select id="userSelect" onchange="switchUser(this.value)">
+                            <!-- Populated by JS -->
+                        </select>
+                    </div>
+                </div>
+                <div class="search-bar">
+                    <i data-lucide="search" class="icon-small text-muted"></i>
+                    <input type="text" placeholder="Search for groceries, fresh produce...">
+                </div>
+            </header>
+
+            <main class="home-content">
+
+
+                <h2 class="section-title">Shop by Category</h2>
+                <div class="categories-row" id="realCategoriesRow">
+                    <!-- Populated by JS -->
+                </div>
+
+                <h2 class="section-title" id="productsTitle" style="margin-top: 20px;">All Items</h2>
+                <div class="categories-grid" id="categoriesGrid">
+                    <!-- Populated by JS -->
+                </div>
+            </main>
+
+            <!-- View Cart Footer has been moved outside -->
+            
+            <nav class="bottom-nav">
+                <div class="nav-item active" onclick="switchTab('home')">
+                    <i data-lucide="home"></i>
+                    <span>Home</span>
+                </div>
+                <div class="nav-item" onclick="switchTab('reorder')">
+                    <i data-lucide="refresh-cw"></i>
+                    <span>Reorder</span>
+                </div>
+            </nav>
+        </div>
+
+        <!-- View 1.5: Reorder Page -->
+        <div id="reorderView" class="view">
+            <header class="header">
+                <div class="header-content">
+                    <div>
+                        <h1 class="brand-title">Reorder</h1>
+                        <p class="delivery-time">Your regular items</p>
+                    </div>
+                </div>
+            </header>
+            <main class="main-content">
+                <div id="previouslyOrderedSection">
+                    <p class="history-summary" id="historySummaryText"></p>
+                    <div class="reorder-list" id="previousOrdersGrid" style="margin-top: 16px;"></div>
+                </div>
+            </main>
+            <nav class="bottom-nav">
+                <div class="nav-item" onclick="switchTab('home')">
+                    <i data-lucide="home"></i>
+                    <span>Home</span>
+                </div>
+                <div class="nav-item active" onclick="switchTab('reorder')">
+                    <i data-lucide="refresh-cw"></i>
+                    <span>Reorder</span>
+                </div>
+            </nav>
+        </div>
+
+        <!-- View 2: Cart & Payment Page -->
+        <div id="cartView" class="view">
+            <header class="header">
+                <div class="header-left">
+                    <i data-lucide="arrow-left" class="icon-back" onclick="goToHome()"></i>
+                    <div class="header-titles">
+                        <h1 class="brand-title">Checkout</h1>
+                    </div>
+                </div>
+            </header>
+            
+            <main class="main-content">
+                <section class="section cart-items" id="cartItemsContainer">
+                    <!-- Populated by JS -->
+                </section>
+
+                <section class="section ai-upsell" id="checkoutAiUpsell" style="display:none; margin-bottom: 16px; overflow: hidden;">
+                    <div class="ai-upsell-header" style="display: flex; gap: 8px; align-items: center; margin-bottom: 12px;">
+                        <i data-lucide="sparkles" class="icon-sparkle"></i>
+                        <h3 style="font-size: 15px;">Before you checkout...</h3>
+                    </div>
+                    <div id="checkoutAiContent" class="checkout-scroll-container"></div>
+                </section>
+
+                <section class="section bill-details">
+                    <h2>Bill Details</h2>
+                    <div class="bill-row">
+                        <span>Item Total</span>
+                        <span id="billTotal">₹0.00</span>
+                    </div>
+                    <div class="bill-row">
+                        <span>Delivery Fee</span>
+                        <span><strike>₹35</strike> <span class="free">FREE</span></span>
+                    </div>
+                    <div class="bill-divider"></div>
+                    <div class="bill-row total">
+                        <span>To Pay</span>
+                        <span id="grandTotal">₹0.00</span>
+                    </div>
+                </section>
+                
+                <!-- Success message area -->
+                <div id="paymentSuccess" style="display:none; text-align:center; padding: 20px; color: #16a34a;">
+                    <i data-lucide="check-circle" style="width:48px; height:48px; margin-bottom:12px;"></i>
+                    <h2>Order Placed!</h2>
+                </div>
+            </main>
+
+            <footer class="floating-checkout" id="payFooter">
+                <div class="checkout-amount">
+                    <p>To Pay</p>
+                    <h3 id="payTotal">₹0.00</h3>
+                </div>
+                <button class="checkout-btn" onclick="processPayment()">
+                    Proceed to Pay <i data-lucide="chevron-right"></i>
+                </button>
+            </footer>
+        </div>
+
+        <!-- The "Hybrid AI" Sleek Pop-Up -->
+        <div class="ai-modal-overlay" id="aiModal">
+            <div class="ai-modal-content">
+                <button class="close-btn" onclick="closeModal()">
+                    <i data-lucide="x"></i>
+                </button>
+                
+                <div class="ai-modal-header">
+                    <i data-lucide="sparkles" class="icon-sparkle"></i>
+                    <h2>What's New for You</h2>
+                </div>
+                
+                <div id="aiModalBody">
+                    <div class="loading-state">
+                        <div class="spinner"></div>
+                        <p>Curating your experience...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Floating View Cart Button (Global for Home & Reorder) -->
+        <footer class="floating-checkout" id="viewCartFooter" style="display: none; z-index: 100;" onclick="goToCart()">
+            <div class="checkout-amount">
+                <p id="footerItemCount">1 Item</p>
+                <h3 id="footerTotal">₹0.00</h3>
+            </div>
+            <button class="checkout-btn">
+                View Cart <i data-lucide="shopping-bag"></i>
+            </button>
+        </footer>
+        
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

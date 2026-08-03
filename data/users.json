@@ -1,0 +1,23 @@
+[
+  {
+    "userId": "user_101",
+    "persona": "The Healthy Snacker",
+    "habitualCategories": ["Beverages", "Snacks"],
+    "targetDetourProductId": "pc_02",
+    "groceryHistorySummary": "Frequently orders energy drinks, protein bars, and potato chips late at night."
+  },
+  {
+    "userId": "user_102",
+    "persona": "The Young Parent",
+    "habitualCategories": ["Dairy", "Fresh Produce", "Bakery"],
+    "targetDetourProductId": "hc_02",
+    "groceryHistorySummary": "Regularly orders milk, fresh vegetables, bread, and breakfast cereals early in the morning."
+  },
+  {
+    "userId": "user_103",
+    "persona": "The Home Chef",
+    "habitualCategories": ["Spices", "Fresh Produce", "Meat & Seafood"],
+    "targetDetourProductId": "hc_01",
+    "groceryHistorySummary": "Consistently buys raw ingredients, exotic spices, and fresh meats for evening cooking."
+  }
+]

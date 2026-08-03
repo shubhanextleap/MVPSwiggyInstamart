@@ -1,0 +1,23 @@
+[
+  {"productId": "snk_01", "name": "Doritos Nacho Cheese (150g)", "category": "Snacks", "price": 100.00, "inStock": true},
+  {"productId": "snk_02", "name": "Lays Classic Salted (100g)", "category": "Snacks", "price": 50.00, "inStock": true},
+  {"productId": "snk_03", "name": "Oreo Chocolate Cookies (120g)", "category": "Snacks", "price": 40.00, "inStock": true},
+  {"productId": "bev_01", "name": "Coca Cola Can (330ml)", "category": "Beverages", "price": 40.00, "inStock": true},
+  {"productId": "bev_02", "name": "Red Bull Energy Drink (250ml)", "category": "Beverages", "price": 125.00, "inStock": true},
+  {"productId": "bev_03", "name": "Tropicana Orange Juice (1L)", "category": "Beverages", "price": 110.00, "inStock": true},
+  {"productId": "inst_01", "name": "Maggi 2-Minute Noodles (70g)", "category": "Instant Food", "price": 14.00, "inStock": true},
+  {"productId": "inst_02", "name": "Cup Noodles Spicy (70g)", "category": "Instant Food", "price": 50.00, "inStock": true},
+  {"productId": "pc_01", "name": "Nivea Men Face Wash (100ml)", "category": "Personal Care", "price": 199.00, "inStock": true},
+  {"productId": "pc_02", "name": "Colgate Toothpaste (150g)", "category": "Personal Care", "price": 95.00, "inStock": true},
+  {"productId": "pc_03", "name": "Dove Body Wash (250ml)", "category": "Personal Care", "price": 250.00, "inStock": true},
+  {"productId": "pet_01", "name": "Whiskas Cat Food (1.2kg)", "category": "Pet Supplies", "price": 420.00, "inStock": true},
+  {"productId": "pet_02", "name": "Pedigree Dog Food (3kg)", "category": "Pet Supplies", "price": 650.00, "inStock": true},
+  {"productId": "baby_01", "name": "Pampers Diapers (Large, 30 Count)", "category": "Baby Care", "price": 450.00, "inStock": true},
+  {"productId": "baby_02", "name": "Johnson's Baby Powder (100g)", "category": "Baby Care", "price": 85.00, "inStock": true},
+  {"productId": "hc_01", "name": "Vim Dishwash Gel (500ml)", "category": "Home & Cleaning", "price": 115.00, "inStock": true},
+  {"productId": "hc_02", "name": "Harpic Toilet Cleaner (500ml)", "category": "Home & Cleaning", "price": 99.00, "inStock": true},
+  {"productId": "gro_01", "name": "Aashirvaad Whole Wheat Atta (5kg)", "category": "Groceries", "price": 230.00, "inStock": true},
+  {"productId": "gro_02", "name": "India Gate Basmati Rice (1kg)", "category": "Groceries", "price": 180.00, "inStock": true},
+  {"productId": "pharm_01", "name": "Paracetamol 500mg (10 Tablets)", "category": "Pharmacy", "price": 15.00, "inStock": true},
+  {"productId": "pharm_02", "name": "Digene Antacid (200ml)", "category": "Pharmacy", "price": 130.00, "inStock": true}
+]

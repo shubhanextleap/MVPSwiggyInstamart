@@ -1,0 +1,32 @@
+{
+  "cart_snacker": {
+    "cartId": "cart_888",
+    "userId": "usr_snacker",
+    "items": [
+      {"productId": "snk_01", "quantity": 2},
+      {"productId": "bev_02", "quantity": 1}
+    ],
+    "totalValue": 7.50,
+    "scenario": "Buying energy drinks and chips late at night."
+  },
+  "cart_parent": {
+    "cartId": "cart_999",
+    "userId": "usr_parent",
+    "items": [
+      {"productId": "baby_01", "quantity": 1},
+      {"productId": "gro_01", "quantity": 1}
+    ],
+    "totalValue": 18.00,
+    "scenario": "Restocking heavy baby supplies and flour."
+  },
+  "cart_conflicting": {
+    "cartId": "cart_777",
+    "userId": "usr_cleaner",
+    "items": [
+      {"productId": "hc_02", "quantity": 1},
+      {"productId": "snk_03", "quantity": 3}
+    ],
+    "totalValue": 9.00,
+    "scenario": "Edge case: Buying toxic toilet cleaner alongside delicious chocolate cookies."
+  }
+}
