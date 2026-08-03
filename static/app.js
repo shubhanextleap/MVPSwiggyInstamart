@@ -124,8 +124,7 @@ function renderProducts(items) {
         
         grid.innerHTML += `
             <div class="category-item" onclick="addRegularItem('${item.productId}')">
-                <div class="cat-icon" style="position: relative; overflow: visible;">
-                    <i data-lucide="${getCategoryIcon(item.category)}"></i>
+                <div class="cat-icon" style="position: relative; overflow: visible; background-image: url('${item.img}'); background-size: cover; background-position: center; background-color: white; border: 1px solid var(--border);">
                     ${overlayHtml}
                 </div>
                 <p style="${qty > 0 ? 'margin-top: 8px;' : ''}">${item.name.substring(0, 10)}..</p>
@@ -224,7 +223,8 @@ function renderReorderGrid() {
         
         grid.innerHTML += `
             <div class="reorder-card">
-                <div class="reorder-info">
+                <div style="width: 40px; height: 40px; border-radius: 8px; background-image: url('${item.img}'); background-size: cover; background-position: center; flex-shrink: 0;"></div>
+                <div class="reorder-info" style="margin-left: 12px;">
                     <h4>${item.name}</h4>
                     <p>₹${item.price.toFixed(2)}</p>
                 </div>
@@ -249,7 +249,7 @@ async function fetchHybridDetour(userId) {
             <div class="ai-message-bubble">"${aiDetourItem.aiMessage}"</div>
             <div class="detour-card" style="margin-bottom: 16px; border: 1px solid rgba(219,39,119,0.3); background: linear-gradient(to right, rgba(124,58,237,0.05), rgba(219,39,119,0.05)); justify-content: space-between;">
                 <div style="display: flex; gap: 12px; align-items: center;">
-                    <div class="detour-img"></div>
+                    <div class="detour-img" style="background-image: url('${fullCatalog.find(i => i.productId === aiDetourItem.productId)?.img || ''}');"></div>
                     <div class="detour-info">
                         <h4>${aiDetourItem.productName}</h4>
                         <p style="font-size:10px; color:var(--swiggy-orange); font-weight:500;">✨ Recommended for you</p>
@@ -262,10 +262,12 @@ async function fetchHybridDetour(userId) {
             <h4 style="font-size: 13px; margin-bottom: 8px;">Trending right now</h4>
             <div class="more-items-grid" style="margin-top:0;">
                 ${fullCatalog.sort(() => 0.5 - Math.random()).slice(0, 3).map(i => `
-                    <div class="more-item-card" onclick="trackEvent('AI_MODAL_TRENDING_ADD', '${i.productId}', 'home_modal'); addRegularItem('${i.productId}')" style="cursor: pointer; position: relative;">
-                        <div style="position: absolute; top: 4px; right: 4px; background: #eef2ff; color: #4f46e5; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: bold;">+</div>
-                        <p style="font-size:11px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding-top: 12px;">${i.name}</p>
-                        <p style="font-size:12px; font-weight:700;">₹${i.price}</p>
+                    <div class="more-item-card" onclick="trackEvent('AI_MODAL_TRENDING_ADD', '${i.productId}', 'home_modal'); addRegularItem('${i.productId}')" style="cursor: pointer; position: relative; height: 100px; background-image: linear-gradient(to top, rgba(255,255,255,1) 10%, rgba(255,255,255,0.7) 40%, rgba(255,255,255,0) 100%), url('${i.img}'); background-size: cover; background-position: center;">
+                        <div style="position: absolute; top: 4px; right: 4px; background: #eef2ff; color: #4f46e5; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: bold; z-index: 2;">+</div>
+                        <div style="margin-top: auto; z-index: 2; padding-top: 24px;">
+                            <p style="font-size:11px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${i.name}</p>
+                            <p style="font-size:12px; font-weight:700;">₹${i.price}</p>
+                        </div>
                     </div>
                 `).join('')}
             </div>
@@ -387,6 +389,7 @@ function renderCartPage() {
         totalPrice += itemTotal;
         container.innerHTML += `
             <div class="cart-item">
+                <div style="width: 40px; height: 40px; border-radius: 8px; background-image: url('${fullCatalog.find(i => i.productId === item.id)?.img || ''}'); background-size: cover; background-position: center; flex-shrink: 0; margin-right: 12px;"></div>
                 <div class="item-info" style="flex: 1;">
                     <h4>${item.name}</h4>
                     <p>₹${item.price.toFixed(2)}</p>
@@ -409,8 +412,8 @@ function renderCartPage() {
     
     if (aiDetourItem && !cart.find(i => i.id === aiDetourItem.productId)) {
         upsellsHtml += `
-            <div class="checkout-card checkout-card-ai">
-                <div>
+            <div class="checkout-card checkout-card-ai" style="background-image: linear-gradient(to top, rgba(255,255,255,1) 40%, rgba(255,255,255,0.8) 60%, rgba(255,255,255,0.4) 100%), url('${fullCatalog.find(i => i.productId === aiDetourItem.productId)?.img || ''}'); background-size: cover; background-position: center;">
+                <div style="z-index: 2;">
                     <h4>${aiDetourItem.productName}</h4>
                     <p style="font-size:10px; color:var(--swiggy-orange); margin-bottom:4px; font-weight:500;">✨ Recommended for you</p>
                     <p>₹${aiDetourItem.price.toFixed(2)}</p>
@@ -424,8 +427,8 @@ function renderCartPage() {
     const randomUpsells = fullCatalog.sort(() => 0.5 - Math.random()).filter(i => !cart.find(c => c.id === i.productId)).slice(0, 2);
     randomUpsells.forEach(item => {
         upsellsHtml += `
-            <div class="checkout-card">
-                <div>
+            <div class="checkout-card" style="background-image: linear-gradient(to top, rgba(255,255,255,1) 40%, rgba(255,255,255,0.8) 60%, rgba(255,255,255,0.4) 100%), url('${item.img}'); background-size: cover; background-position: center;">
+                <div style="z-index: 2;">
                     <h4>${item.name}</h4>
                     <p>₹${item.price.toFixed(2)}</p>
                 </div>
